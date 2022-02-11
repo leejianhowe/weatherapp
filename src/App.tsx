@@ -60,7 +60,7 @@ function App() {
       <hr />
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <div className="row justify-content-between d-flex">
+          <div className="row justify-content-between d-flex mb-2">
             <div className="col-lg-3 col-md-6 col-sm-12 form-group ">
               <label htmlFor="city">City</label>
               <input
@@ -83,7 +83,8 @@ function App() {
                 className="form-control"
               />
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-12 align-items-center d-flex">
+
+            <div className="col-lg-3 col-md-12 col-sm-12 align-items-center d-flex">
               <button type="submit" className="btn btn-primary mr-2">
                 Search
               </button>
