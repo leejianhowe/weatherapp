@@ -8,10 +8,13 @@ function WeatherData(props: Props) {
 
   return (
     <div className="container">
-      <span className="city-name">
+      <div className="city-name">
         {name}, {sys.country}
-      </span>
-      <h3>{weather[0].main}</h3>
+      </div>
+      <div className="d-flex align-items-center">
+        <h4>{weather[0].main}</h4>
+        <img src={`https://openweathermap.org/img/wn/${weather[0].icon}.png`} alt={weather[0].main} />
+      </div>
       <p className="description">Description: {weather[0].description}</p>
       <p className="description">
         Temperature: {temp_min}&#8451;-{temp_max}&#8451;
