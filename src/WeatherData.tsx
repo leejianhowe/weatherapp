@@ -5,6 +5,7 @@ interface Props {
 function WeatherData(props: Props) {
   const { name, sys, main, dt, weather } = props.weatherData;
   const { temp_max, temp_min, humidity } = main;
+
   return (
     <div className="container">
       <span className="city-name">

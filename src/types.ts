@@ -25,3 +25,7 @@ export enum ErrorMessage {
   NO_INPUT = "please fill up the fields",
   SNA = "please try again later",
 }
+
+export interface SearchHistoryItem extends FormState{
+  time: number
+}

@@ -3,6 +3,7 @@ import { FormState, WeatherDataType, ErrorMessage } from "./types";
 import useSearchHistory from "./useSearchHistory";
 import WeatherData from "./WeatherData";
 import "./App.css";
+import SearchHistory from "./SearchHistory";
 
 const initialFormState = {
   city: "",
@@ -47,6 +48,7 @@ function App() {
       if (response.status === 200) {
         const data = await response.json();
         setWeatherData(data);
+        saveSearch(data.name, data.sys.country, new Date().getTime());
       } else if (response.status >= 400 && response.status < 500) {
         handleError(ErrorMessage.NOT_FOUND);
       } else {
@@ -101,6 +103,7 @@ function App() {
         </form>
       </div>
       {weatherData && <WeatherData weatherData={weatherData} />}
+      <SearchHistory search={getWeather} searchHistory={searchHistory} delete={deleteSearchItem}/>
     </div>
   );
 }
