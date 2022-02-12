@@ -11,32 +11,42 @@ const initialFormState = {
 };
 
 function App() {
+  // custom hook for search history is initialised in root component
   const { saveSearch, searchHistory, deleteSearchItem } = useSearchHistory();
+  // state of form data to query openweather api
   const [form, setForm] = useState<FormState>(initialFormState);
+  // weather data state to display result from open weather api
   const [weatherData, setWeatherData] = useState<WeatherDataType>();
+  // error message to display to user when api fails or input is invalid
   const [error, setError] = useState("");
+  // updates form value
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     e.stopPropagation();
     setForm((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
   };
+  // on click of search button handles the search function
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    if (!form.city && !form.country) {
+    // needs city to be filled
+    if (!form.city) {
       handleError(ErrorMessage.NO_INPUT);
       return;
     }
     getWeather(form);
   };
+  // clear form
   const handleClear: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     setForm(initialFormState);
   };
+  // set error code, and auto clears after 3s
   const handleError = (code: ErrorMessage) => {
     setError(code);
     setTimeout(() => {
       setError("");
     }, 3000);
   };
+  // fetch request to open weather api
   const getWeather = async (form: FormState) => {
     const queryValue = Object.values(form).join(",");
     try {
